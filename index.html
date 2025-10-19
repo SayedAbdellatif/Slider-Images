@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TTF E-Commerce</title>
+
+    <!-- Font Awesome for social icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script defer src="./main.js"></script>
+    <style>
+      /* ===== Reset and base styles ===== */
+      html {
+        scroll-behavior: smooth;
+      }
+      html,
+      body {
+        height: 1400px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        width: 100%;
+      }
+      /* ===== HEADER ===== */
+      header {
+        background-color: rgb(91 64 45);
+        padding: 20px;
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(91 64 45);
+        padding: 10px 20px;
+      }
+      .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+        margin-right: 50px;
+      }
+      .navbar ul li {
+        cursor: pointer;
+        color: hsl(30deg 76.54% 68.24%);
+      }
+      .navbar ul li a:hover {
+        color: red;
+      }
+      .signout {
+        color: red !important;
+      }
+      .logo img {
+        height: 40px;
+      }
+      /* ===== MAIN ===== */
+      main {
+        flex: 1;
+        padding-top: 20px;
+        background-color: hsl(30, 33%, 64%);
+        width: 100%;
+        min-height: 1250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+      }
+      /* ===== SLIDER styles ===== */
+      .slider {
+        width: 100%;
+        max-width: 900px;
+        height: 700px;
+        position: absolute;
+        top: -60px; /* moves the slider up */
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      .slider img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      .slider img.active {
+        opacity: 1;
+        position: relative;
+      }
+
+      /* ===== RANDOM IMAGE ===== */
+      #randomImage1 {
+        display: block;
+        max-width: 800px;
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* ===== FOOTER ===== */
+      .site-footer {
+        background-color: #222;
+        color: #fff;
+        padding: 40px 20px 20px;
+        min-width: 1420px;
+      }
+
+      .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-column {
+        flex: 1;
+        min-width: 200px;
+        margin-bottom: 20px;
+        padding: 0 15px;
+      }
+
+      .footer-column h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        color: #fff;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        color: #bbb;
+        text-decoration: none;
+      }
+
+      .footer-column a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-links a {
+        color: #fff;
+        font-size: 20px;
+        transition: transform 0.3s;
+      }
+
+      .social-links a:hover {
+        transform: scale(1.2);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+        font-size: 14px;
+        color: #999;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-bottom .footing a {
+        color: #999;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+
+      .footer-bottom .footing a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .slider #randomImage1 {
+          height: 200px;
+        }
+
+        .footer-container {
+          flex-direction: column;
+        }
+
+        .footer-column {
+          text-align: center;
+        }
+
+        .social-links {
+          justify-content: center;
+        }
+      }
+      #randomImage1 {
+        display: block;
+        margin: 30px auto 0;
+        max-width: 700px;
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      .slider {
+        position: relative;
+        width: 100%;
+        height: 700px; /* Adjust as needed */
+        overflow: hidden;
+      }
+
+      .slider img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      .slider img.active {
+        opacity: 1;
+      }
+      .bar a {
+        color: hsl(30deg 76.54% 68.24%);
+      }
+      .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 50%;
+        user-select: none;
+        z-index: 10;
+        transition: background-color 0.3s ease;
+      }
+
+      .slider-btn:hover {
+        background-color: rgba(36, 35, 116, 0.8);
+      }
+
+      #prevBtn {
+        left: 10px;
+      }
+
+      #nextBtn {
+        right: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="head">
+        <div class="navbar">
+          <div class="logo">
+            <a href="https://www.talontextilefasteners.com.au/" target="_blank">
+              <img src="./Assets/TTF.png" alt="TTF Logo" />
+            </a>
+          </div>
+          <div class="bar">
+            <ul>
+              <li>
+                <a
+                  href="home"
+                  id="homeLink"
+
+                  >Home</a
+                >
+              </li>
+
+              <li>
+                <a
+                  id="openWordLink"
+                  href="./Assets/Resources.docx"
+  
+                  >Resources</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://www.talontextilefasteners.com.au/about"
+                  id="aboutLink"
+                  >About</a
+                >
+              </li>
+
+              <li><a href="#footer-column">Contact Us</a></li>
+
+              <li><a href="./TTF-Login.html" class="signout">Sign Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <!-- Slider with animation -->
+      <div class="slider">
+        <img src="./Assets/R1.jpg" class="active" alt="Slide 1" />
+        <img src="./Assets/R2.jpg" alt="Slide 2" />
+        <img src="./Assets/R3.jpg" alt="Slide 3" />
+        <img src="./Assets/R4.jpg" alt="Slide 4" />
+        <img src="./Assets/R5.jpg" alt="Slide 5" />
+        <img src="./Assets/R6.jpg" alt="Slide 6" />
+        <img src="./Assets/R7.jpg" alt="Slide 7" />
+        <img src="./Assets/R8.jpg" alt="Slide 8" />
+        <img src="./Assets/R9.jpg" alt="Slide 9" />
+        <img src="./Assets/R10.jpg" alt="Slide 10" />
+
+        <button id="prevBtn" class="slider-btn">&#10094;</button>
+        <!-- Left arrow -->
+        <button id="nextBtn" class="slider-btn">&#10095;</button>
+        <!-- Right arrow -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>About Us</h3>
+          <p>Your company description or mission statement.</p>
+        </div>
+
+        <div id="footer-column" class="footer-column">
+          <h3>Contact Info</h3>
+          <p>Email: info@example.com</p>
+          <p>Phone: (123) 456-7890</p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/Upskilled/" target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://www.instagram.com/upskilled/" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.linkedin.com/school/upskilled/" target="_blank"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="https://x.com/Upskilled" target="_blank"
+              ><i class="fab fa-x-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/user/UpSkilledTV" target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy;2025 - Talon Textile Fasteners, a fictitious business scenario
+          set up for educational purposes by
+        </p>
+        <div class="footing">
+          <a href="https://www.upskilled.edu.au/" target="_blank"
+            >Upskilled RTO 40374</a
+          >
+          |
+          <a
+            href="https://www.talontextilefasteners.com.au/privacy"
+            target="_blank"
+            >Privacy Policy</a
+          >
+          |
+          <a
+            href="https://drive.google.com/file/d/15LQiDN0iPFs8YdqeXVOZsFRmHQB4Tyzi/view?usp=sharing"
+            target="_blank"
+            >Copyright Policy</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+/* Dark mode base */
+.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Dark mode for the form container */
+.dark-mode .contact-container {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
+}
+
+
+/* Headings */
+.dark-mode h1,
+.dark-mode h4,
+.dark-mode label {
+  color: #f1f1f1;
+}
+
+/* Inputs and textarea */
+.dark-mode input[type="text"],
+.dark-mode input[type="email"],
+.dark-mode input[type="tel"],
+.dark-mode textarea {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border: 1px solid #555;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #bbbbbb;
+}
+
+/* Focus effect */
+.dark-mode input:focus,
+.dark-mode textarea:focus {
+  border-color: #66b2ff;
+  box-shadow: 0 0 0 3px rgba(102, 178, 255, 0.2);
+}
+
+/* Radio buttons */
+.dark-mode .radio-option input {
+  accent-color: #66b2ff;
+}
+
+/* Buttons */
+.dark-mode .btn-submit {
+  background-color: #007bff;
+  color: #fff;
+   border-radius: 5px;
+}
+
+.dark-mode .btn-submit:hover {
+  background-color: #0069d9;
+}
+
+.dark-mode .btn-reset {
+  background-color: #368b04;
+  color: #fff;
+   border-radius: 5px;
+}
+
+.dark-mode .btn-reset:hover {
+  background-color: #56b318;
+}
+
+/* Error messages */
+.dark-mode .error-message {
+  color: #ff6b6b;
+}
+
